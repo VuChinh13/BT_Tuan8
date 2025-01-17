@@ -18,18 +18,16 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var email = binding.etEmail.text
-        var matkhau = binding.etMatkhau.text
         binding.btDangki.setOnClickListener {
              //Kiểm tra xem các ô nhập liệu có trống hay không
-             if (email.isEmpty() || matkhau.isEmpty()){
+             if (binding.etEmail.text.isEmpty() || binding.etMatkhau.text.isEmpty()){
                   // Trường hợp nếu mà trống
                  Toast.makeText(this,"Hãy nhập đầy đủ thông tin!!", Toast.LENGTH_SHORT).show()
              }else{
                  // Mở file để ghi thông tin
                  val fileOutputStream: FileOutputStream = openFileOutput("userInformation.txt", MODE_PRIVATE)
                  // Chuỗi mà lưu vào trong file
-                 val data = "Email: $email\nPassword: $matkhau"
+                 val data = "Email: ${binding.etEmail.text}\nPassword: ${binding.etMatkhau.text}"
                  // Dữ liệu chuỗi (data) được chuyển đổi thành mảng byte và ghi vào tệp thông qua FileOutputStream
                  // Phương thức toByteArray() chuyển đổi chuỗi thành các byte mà hệ thống có thể lưu trữ vào tệp.
                  fileOutputStream.write(data.toByteArray())
